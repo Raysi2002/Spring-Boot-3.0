@@ -1,0 +1,52 @@
+[
+  {
+    "departmentName": "Management",
+    "departmentCode": 116,
+    "departmentAddress": "Hile"
+  },
+  {
+    "departmentName": "Finance",
+    "departmentCode": 201,
+    "departmentAddress": "Kathmandu"
+  },
+  {
+    "departmentName": "Human Resources",
+    "departmentCode": 102,
+    "departmentAddress": "Pokhara"
+  },
+  {
+    "departmentName": "Information Technology",
+    "departmentCode": 303,
+    "departmentAddress": "Lalitpur"
+  },
+  {
+    "departmentName": "Marketing",
+    "departmentCode": 401,
+    "departmentAddress": "Biratnagar"
+  },
+  {
+    "departmentName": "Operations",
+    "departmentCode": 501,
+    "departmentAddress": "Chitwan"
+  },
+  {
+    "departmentName": "Legal",
+    "departmentCode": 601,
+    "departmentAddress": "Dharan"
+  },
+  {
+    "departmentName": "Research and Development",
+    "departmentCode": 701,
+    "departmentAddress": "Butwal"
+  },
+  {
+    "departmentName": "Customer Support",
+    "departmentCode": 801,
+    "departmentAddress": "Janakpur"
+  },
+  {
+    "departmentName": "Quality Assurance",
+    "departmentCode": 901,
+    "departmentAddress": "Nepalgunj"
+  }
+]
