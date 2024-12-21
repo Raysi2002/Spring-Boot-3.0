@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 // @Service annotation marks this class as a service component in the Spring application.
 // It implements the business logic defined in the DepartmentService interface.
@@ -57,5 +58,10 @@ public class DepartmentServiceImplementation implements DepartmentService {
     @Override
     public void saveDepartments(List<Department> departments) {
         departmentRepository.saveAll(departments);
+    }
+
+    @Override
+    public Department fetchDepartmentById(Long id){
+        return departmentRepository.findById(id).get();
     }
 }

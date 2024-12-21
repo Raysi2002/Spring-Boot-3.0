@@ -32,4 +32,6 @@ public interface DepartmentService {
     // - Useful for batch processing where multiple department records need to be saved at once.
     // - Reduces the overhead of making multiple individual save calls for each department.
     void saveDepartments(List<Department> departments);
+
+    Department fetchDepartmentById(Long id);
 }

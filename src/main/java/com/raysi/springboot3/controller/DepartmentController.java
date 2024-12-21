@@ -3,10 +3,7 @@ package com.raysi.springboot3.controller;
 import com.raysi.springboot3.entity.Department;
 import com.raysi.springboot3.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -61,5 +58,10 @@ public class DepartmentController {
         // Returns the list of departments as a String.
         // This provides a simple confirmation response, showing the saved departments' details.
         return departments.toString();
+    }
+
+    @GetMapping("/api/dept/{id}")
+    public Department fetchDepartmentById(@PathVariable Long id){
+        return departmentService.fetchDepartmentById(id);
     }
 }
