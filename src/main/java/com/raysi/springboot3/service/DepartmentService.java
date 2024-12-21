@@ -38,4 +38,6 @@ public interface DepartmentService {
     void deleteDepartmentById(Long id);
 
     void deleteDepartmentByIdJpaMethod(Long id);
+
+    Department updateDepartment(Long id, Department department);
 }

@@ -76,4 +76,9 @@ public class DepartmentController {
         departmentService.deleteDepartmentByIdJpaMethod(id);
         return "Department with id: " + id + " has been deleted successfully";
     }
+
+    @PutMapping("/api/dept/{id}")
+    public Department updateDepartment(@PathVariable Long id, @RequestBody Department department){
+        return departmentService.updateDepartment(id, department);
+    }
 }

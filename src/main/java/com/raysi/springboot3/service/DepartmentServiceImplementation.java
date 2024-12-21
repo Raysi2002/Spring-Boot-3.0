@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 // @Service annotation marks this class as a service component in the Spring application.
 // It implements the business logic defined in the DepartmentService interface.
@@ -73,5 +74,29 @@ public class DepartmentServiceImplementation implements DepartmentService {
     @Override
     public void deleteDepartmentByIdJpaMethod(Long id) {
         departmentRepository.deleteById(id);
+    }
+
+    @Override
+    public Department updateDepartment(Long id, Department department) {
+        Department updatingDepartment = departmentRepository.findById(id).get();
+
+        if(Objects.nonNull(department.getDepartmentName()) &&
+                !"".equalsIgnoreCase(department.getDepartmentName())
+        ){
+            updatingDepartment.setDepartmentName(department.getDepartmentName());
+        }
+
+        if(Objects.nonNull(department.getDepartmentAddress()) &&
+                !"".equalsIgnoreCase(department.getDepartmentAddress())
+        ){
+            updatingDepartment.setDepartmentAddress(department.getDepartmentAddress());
+        }
+
+        if(Objects.nonNull(department.getDepartmentCode())
+                && !"".equalsIgnoreCase(department.getDepartmentCode())
+        ){
+            updatingDepartment.setDepartmentCode(department.getDepartmentCode());
+        }
+        return departmentRepository.save(updatingDepartment);
     }
 }
