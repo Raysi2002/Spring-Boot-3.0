@@ -1,7 +1,10 @@
 package com.raysi.springboot3.repository;
 
 import com.raysi.springboot3.entity.Department;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 // @Repository annotation marks this interface as a Spring-managed bean and a Data Access Object (DAO).
@@ -18,4 +21,8 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
 
     // No additional methods are defined here because JpaRepository already provides all the basic functionality required
     // to interact with the database. Custom queries can be added as needed using method names or @Query annotations.
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM department WHERE department_id = ?1", nativeQuery = true)
+    void deleteDepartmentByDepartmentId(Long departmentId);
 }

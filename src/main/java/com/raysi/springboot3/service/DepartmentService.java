@@ -34,4 +34,6 @@ public interface DepartmentService {
     void saveDepartments(List<Department> departments);
 
     Department fetchDepartmentById(Long id);
+
+    void deleteDepartmentById(Long id);
 }
