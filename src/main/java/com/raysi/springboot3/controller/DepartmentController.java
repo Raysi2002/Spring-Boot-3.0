@@ -70,4 +70,10 @@ public class DepartmentController {
         departmentService.deleteDepartmentById(id);
         return "Department with id: " + id + " has been deleted successfully";
     }
+
+    @DeleteMapping("/api/department/{id}")
+    public String deleteDepartmentByIdJpaMethod(@PathVariable Long id){
+        departmentService.deleteDepartmentByIdJpaMethod(id);
+        return "Department with id: " + id + " has been deleted successfully";
+    }
 }

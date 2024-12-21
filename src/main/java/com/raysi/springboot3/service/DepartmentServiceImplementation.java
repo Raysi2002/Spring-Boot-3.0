@@ -69,4 +69,9 @@ public class DepartmentServiceImplementation implements DepartmentService {
     public void deleteDepartmentById(Long id) {
         departmentRepository.deleteDepartmentByDepartmentId(id);
     }
+
+    @Override
+    public void deleteDepartmentByIdJpaMethod(Long id) {
+        departmentRepository.deleteById(id);
+    }
 }

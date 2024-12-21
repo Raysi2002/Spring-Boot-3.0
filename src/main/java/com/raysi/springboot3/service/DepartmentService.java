@@ -36,4 +36,6 @@ public interface DepartmentService {
     Department fetchDepartmentById(Long id);
 
     void deleteDepartmentById(Long id);
+
+    void deleteDepartmentByIdJpaMethod(Long id);
 }
