@@ -44,12 +44,11 @@ public class DepartmentController {
         return department.toString();
     }
 
+    // @PostMapping to handle saving multiple departments in a batch.
+    // URL: /api/depts
     @PostMapping("/api/depts")
     public String saveDepartments(@RequestBody List<Department> departments) {
-        // The @PostMapping annotation maps HTTP POST requests to this method.
-        // This endpoint is designed to handle batch saving of multiple Department entities.
-
-        // @RequestBody annotation binds the incoming JSON request payload to the 'departments' parameter.
+        // The @RequestBody annotation binds the incoming JSON request payload to the 'departments' parameter.
         // The JSON payload should be an array of Department objects, which Spring will automatically convert to a List<Department>.
 
         // Calls the saveDepartments method in the DepartmentService layer to persist the list of Department entities.
@@ -60,25 +59,36 @@ public class DepartmentController {
         return departments.toString();
     }
 
+    // @GetMapping to fetch a department by its ID.
+    // URL: /api/dept/{id}
     @GetMapping("/api/dept/{id}")
     public Department fetchDepartmentById(@PathVariable Long id){
+        // Calls the service layer to retrieve a department by its ID.
         return departmentService.fetchDepartmentById(id);
     }
 
-    @DeleteMapping("/api/dept/{id}")
+    // @DeleteMapping is used to map HTTP DELETE requests to this method.
+    // URL: /api/dept/{id}
     public String deleteDepartmentById(@PathVariable Long id){
+        // Calls the service layer to delete a department by its ID.
         departmentService.deleteDepartmentById(id);
         return "Department with id: " + id + " has been deleted successfully";
     }
 
+    // Another @DeleteMapping to delete a department by its ID using JPA method.
+    // URL: /api/department/{id}
     @DeleteMapping("/api/department/{id}")
     public String deleteDepartmentByIdJpaMethod(@PathVariable Long id){
+        // Calls the service layer to delete a department using JPA's built-in deleteById method.
         departmentService.deleteDepartmentByIdJpaMethod(id);
         return "Department with id: " + id + " has been deleted successfully";
     }
 
+    // @PutMapping is used to update a department by its ID.
+    // URL: /api/dept/{id}
     @PutMapping("/api/dept/{id}")
     public Department updateDepartment(@PathVariable Long id, @RequestBody Department department){
+        // Calls the service layer to update a department by its ID.
         return departmentService.updateDepartment(id, department);
     }
 }

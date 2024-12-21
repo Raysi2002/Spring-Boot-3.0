@@ -61,42 +61,73 @@ public class DepartmentServiceImplementation implements DepartmentService {
         departmentRepository.saveAll(departments);
     }
 
+    // Fetches a Department entity by its ID.
+    // If no entity is found, a NoSuchElementException is thrown.
     @Override
     public Department fetchDepartmentById(Long id){
         return departmentRepository.findById(id).get();
     }
 
+    // Deletes a Department entity by its custom ID field (departmentId).
+    // This uses a custom query defined in the DepartmentRepository.
     @Override
     public void deleteDepartmentById(Long id) {
         departmentRepository.deleteDepartmentByDepartmentId(id);
     }
 
+    // Deletes a Department entity by its ID using the default JPA method.
     @Override
     public void deleteDepartmentByIdJpaMethod(Long id) {
         departmentRepository.deleteById(id);
     }
 
+    /**
+     * Updates a Department entity by its ID.
+     *
+     * Responsibilities:
+     * - Fetches the existing entity from the database using its ID.
+     * - Updates only the fields that are non-null and non-empty in the provided department object.
+     * - Saves the updated entity back to the database.
+     *
+     * Parameters:
+     * - Long id: The ID of the Department to update.
+     * - Department department: The new data for updating the existing Department.
+     *
+     * Key Points:
+     * - Uses `Objects.nonNull` to check for null values.
+     * - Ensures that empty strings are not updated using `"".equalsIgnoreCase()`.
+     */
     @Override
     public Department updateDepartment(Long id, Department department) {
+        // Fetch the department to update, or throw an exception if not found.
         Department updatingDepartment = departmentRepository.findById(id).get();
 
+        // Update the departmentName field if it's non-null and non-empty.
+        //        Objects.nonNull(department.getDepartmentName()):
+        //        Ensures the departmentName is not null.
+        //        !"".equalsIgnoreCase(department.getDepartmentName()):
+        //        Ensures the departmentName is not an empty string (case-insensitive).
         if(Objects.nonNull(department.getDepartmentName()) &&
                 !"".equalsIgnoreCase(department.getDepartmentName())
         ){
             updatingDepartment.setDepartmentName(department.getDepartmentName());
         }
 
+        // Update the departmentAddress field if it's non-null and non-empty.
         if(Objects.nonNull(department.getDepartmentAddress()) &&
                 !"".equalsIgnoreCase(department.getDepartmentAddress())
         ){
             updatingDepartment.setDepartmentAddress(department.getDepartmentAddress());
         }
 
+        // Update the departmentCode field if it's non-null and non-empty.
         if(Objects.nonNull(department.getDepartmentCode())
                 && !"".equalsIgnoreCase(department.getDepartmentCode())
         ){
             updatingDepartment.setDepartmentCode(department.getDepartmentCode());
         }
+
+        // Save the updated department back to the database and return it.
         return departmentRepository.save(updatingDepartment);
     }
 }

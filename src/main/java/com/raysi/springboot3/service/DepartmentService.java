@@ -33,11 +33,19 @@ public interface DepartmentService {
     // - Reduces the overhead of making multiple individual save calls for each department.
     void saveDepartments(List<Department> departments);
 
+    // This method fetches a department by its ID from the database.
+// It abstracts the data-fetching logic and provides the required department to the controller.
     Department fetchDepartmentById(Long id);
 
+    // This method deletes a department by its ID using a custom query method from the repository.
+// It handles the logic for removing a department record from the database.
     void deleteDepartmentById(Long id);
 
+    // This method deletes a department by its ID using JPA's built-in deleteById method.
+// It provides an alternative approach for removing department records from the database.
     void deleteDepartmentByIdJpaMethod(Long id);
 
+    // This method updates an existing department by its ID with new values provided in the department parameter.
+// It ensures that only valid fields are updated and handles the persistence of changes.
     Department updateDepartment(Long id, Department department);
 }
