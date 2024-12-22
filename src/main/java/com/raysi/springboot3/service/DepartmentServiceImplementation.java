@@ -129,5 +129,39 @@ public class DepartmentServiceImplementation implements DepartmentService {
 
         // Save the updated department back to the database and return it.
         return departmentRepository.save(updatingDepartment);
+
+
+    }
+
+    // Method 1: Fetch all departments by department name
+    @Override
+    public List<Department> fetchDepartmentByDeptName(String deptName) {
+        // This method delegates the call to the repository's findAllByDepartmentName() method.
+        // It retrieves a list of departments that match the given department name.
+        // Use Case: Ideal for fetching all departments with the same name when department names are not unique.
+        // Key Points:
+        // - The repository method (findAllByDepartmentName) executes a native query for this operation.
+        // - Returns a list of Department objects.
+        // - Case sensitivity depends on the repository method's implementation (likely case-sensitive here).
+        // Example Usage:
+        //   List<Department> departments = service.fetchDepartmentByDeptName("Finance");
+        //   Retrieves all departments named "Finance" from the database.
+        return departmentRepository.findAllByDepartmentName(deptName);
+    }
+
+    // Method 2: Fetch a single department by department name (case-insensitive)
+    @Override
+    public Department fetchDepartmentByDeptNameNative(String deptName) {
+        // This method delegates the call to the repository's findByDepartmentNameIgnoreCase() method.
+        // It retrieves a single department by its name, ignoring case sensitivity.
+        // Use Case: Ideal when department names are unique, and case variations may exist in the input.
+        // Key Points:
+        // - The repository method (findByDepartmentNameIgnoreCase) uses JPA's derived query functionality.
+        // - Returns a single Department object.
+        // - Case-insensitivity is handled automatically by the repository method.
+        // Example Usage:
+        //   Department department = service.fetchDepartmentByDeptNameNative("finance");
+        //   Retrieves the department named "Finance" or any case variation (e.g., "FINANCE").
+        return departmentRepository.findByDepartmentNameIgnoreCase(deptName);
     }
 }

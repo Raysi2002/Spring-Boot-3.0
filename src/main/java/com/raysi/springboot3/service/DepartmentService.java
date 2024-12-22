@@ -48,4 +48,29 @@ public interface DepartmentService {
     // This method updates an existing department by its ID with new values provided in the department parameter.
 // It ensures that only valid fields are updated and handles the persistence of changes.
     Department updateDepartment(Long id, Department department);
+
+    // Method 1: Fetch all departments by department name (case-sensitive)
+    List<Department> fetchDepartmentByDeptName(String deptName);
+// This method retrieves a list of departments that match the given department name.
+// Use Case: Ideal when multiple departments with the same name might exist.
+// Key Points:
+// - Case-sensitive search: The input `deptName` must exactly match the department name in the database.
+// - Returns a list of Department objects, assuming there could be multiple matches.
+// - Typically implemented using JPA or Hibernate's query methods.
+// Example Usage:
+//   List<Department> departments = service.fetchDepartmentByDeptName("Finance");
+//   Retrieves all departments with the exact name "Finance".
+
+
+    // Method 2: Fetch a single department by department name using a native query
+    Department fetchDepartmentByDeptNameNative(String deptName);
+// This method retrieves a single department by its name using a native SQL query.
+// Use Case: Ideal when department names are unique and native SQL queries are preferred for optimization.
+// Key Points:
+// - Native SQL query implementation for better control and performance.
+// - Assumes department names are unique, returning a single Department object.
+// - Case sensitivity depends on how the query is written (e.g., may require `LOWER()` for case-insensitivity).
+// Example Usage:
+//   Department department = service.fetchDepartmentByDeptNameNative("HR");
+//   Retrieves the unique department with the exact name "HR".
 }

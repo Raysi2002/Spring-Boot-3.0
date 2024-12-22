@@ -91,4 +91,30 @@ public class DepartmentController {
         // Calls the service layer to update a department by its ID.
         return departmentService.updateDepartment(id, department);
     }
+
+    // Method 1: Fetch a list of departments by department name
+    @GetMapping("api/depts/name/{deptName}")
+    public List<Department> fetchDepartmentsByDeptName(@PathVariable String deptName) {
+        // This method is used to retrieve multiple departments that match the given department name.
+        // It uses the departmentService to call the fetchDepartmentByDeptName() method.
+        // Ideal for scenarios where the department name is not unique,
+        // and multiple departments with the same name might exist.
+        // Returns: A list of Department objects.
+        // Example API call: GET /api/depts/name/Finance
+        return departmentService.fetchDepartmentByDeptName(deptName);
+    }
+
+    // Method 2: Fetch a single department by department name using a native query
+    @GetMapping("api/dept/name/{deptName}")
+    public Department fetchDepartmentsByDeptNameNative(@PathVariable String deptName) {
+        // This method is used to retrieve a single department by its name.
+        // Assumes that the department name is unique and will return exactly one result.
+        // It uses a native query implementation through departmentService's fetchDepartmentByDeptNameNative() method.
+        // Ideal for performance optimization when working directly with SQL or when additional flexibility is required.
+        // Returns: A single Department object.
+        // Example API call: GET /api/dept/name/Finance
+        return departmentService.fetchDepartmentByDeptNameNative(deptName);
+    }
+
 }
+
