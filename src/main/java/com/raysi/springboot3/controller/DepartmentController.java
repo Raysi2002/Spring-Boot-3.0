@@ -2,10 +2,12 @@ package com.raysi.springboot3.controller;
 
 import com.raysi.springboot3.entity.Department;
 import com.raysi.springboot3.service.DepartmentService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 // @RestController is a specialized annotation in Spring that combines @Controller and @ResponseBody.
 // It indicates that this class is a controller where every method returns a response body (typically JSON).
