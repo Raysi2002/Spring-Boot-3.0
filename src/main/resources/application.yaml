@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active:
+
+---
+
+spring:
+  profiles: spring_3
+  application:
+    name: spring-boot-3.0
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: Raysi@2002
+    url: jdbc:mysql://localhost:3306/spring_3
+    username: root
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+---
+
+spring:
+  profiles: spring_3-
+  application:
+    name: spring-boot-3.0
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: Raysi@2002
+    url: jdbc:mysql://localhost:3306/spring_3
+    username: root
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
